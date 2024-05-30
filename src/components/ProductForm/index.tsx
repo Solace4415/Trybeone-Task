@@ -7,8 +7,9 @@ import { NextRouter, useRouter } from "next/router";
 import { useState } from "react";
 import { LoadingSpinner } from "../Spinner";
 import { FaEdit, FaPlus } from "react-icons/fa";
+import { ProductProps } from "~/interfaces";
 
-function CreateProductForm({ data }: { data: any }) {
+function CreateProductForm({ data }: { data: ProductProps }) {
   const { body, ...otherDataValues } = data;
   const [isLoading, setIsLoading] = useState(false);
   const router: NextRouter = useRouter();
@@ -48,7 +49,7 @@ function CreateProductForm({ data }: { data: any }) {
 
   return (
     <Formik
-      initialValues={{ ...initialValues, ...dataValues }}
+      initialValues={{ ...initialValues, ...(dataValues as any) }}
       onSubmit={handleSubmit}
       enableReinitialize
     >

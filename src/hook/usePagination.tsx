@@ -1,29 +1,5 @@
 import { useState, useEffect } from "react";
-type Gap = {
-  before: boolean;
-  paginationGroup: number[];
-  after: boolean;
-};
-
-type UsePaginationProps = {
-  contentPerPage: number;
-  count: number;
-};
-
-type UsePaginationReturn = {
-  page: number;
-  totalPages: number;
-  setPage: (page: number) => void;
-  nextPage: () => void;
-  prevPage: () => void;
-  firstContentIndex: number;
-  lastContentIndex: number;
-  gaps: { before: boolean; paginationGroup: number[]; after: boolean };
-};
-
-type UsePagination = (
-  UsePaginationProps: UsePaginationProps
-) => UsePaginationReturn;
+import { Gap, UsePagination } from "~/interfaces";
 
 const usePagination: UsePagination = ({ contentPerPage, count }) => {
   const [page, setPage] = useState(1);

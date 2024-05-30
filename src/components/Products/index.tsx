@@ -2,8 +2,15 @@ import React from "react";
 import Productt from "../Product";
 import usePagination from "~/hook/usePagination";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { ProductProps } from "~/interfaces";
 
-const Products = ({ data, mutate }: { data?: any[]; mutate: () => void }) => {
+const Products = ({
+  data,
+  mutate,
+}: {
+  data?: ProductProps[];
+  mutate: () => void;
+}) => {
   const {
     firstContentIndex,
     lastContentIndex,

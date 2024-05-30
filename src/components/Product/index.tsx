@@ -4,8 +4,15 @@ import ActionButtons from "../ActionButtons";
 import { toast } from "react-hot-toast";
 import Image from "next/image";
 import axios from "axios";
+import { ProductProps } from "~/interfaces";
 
-const Product = ({ product, mutate }: { product: any; mutate: () => void }) => {
+const Product = ({
+  product,
+  mutate,
+}: {
+  product: ProductProps;
+  mutate: () => void;
+}) => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const router: NextRouter = useRouter();
@@ -35,14 +42,14 @@ const Product = ({ product, mutate }: { product: any; mutate: () => void }) => {
       <div className="relative">
         <Image
           src={"/assets/Iphone.jpeg"}
-          alt={product.title}
+          alt={product?.title as string}
           width={400}
           height={400}
           className="max-h-[250px] w-full object-cover"
         />
         <ActionButtons
           open={open}
-          id={product.id}
+          id={product?.id as string}
           setOpen={setOpen}
           handleDelete={handleDelete}
           loading={loading}
@@ -50,7 +57,7 @@ const Product = ({ product, mutate }: { product: any; mutate: () => void }) => {
       </div>
 
       <div className="p-4">
-        <h3 className="line-clamp-1 text-gray-900 font-semibold">
+        <h3 className="line-clamp-1 font-semibold text-gray-900">
           {product?.title}
         </h3>
         <p className="line-clamp-2 text-sm italic text-gray-600">
