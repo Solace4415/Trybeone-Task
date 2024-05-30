@@ -1,6 +1,6 @@
 export const initialValues = {
   title: "",
-  body: "",
+  description: "",
   userId: "",
 };
 
@@ -9,5 +9,5 @@ export const formGroups = [
     { fieldName: "title", type: "text" },
     { fieldName: "userId", type: "number" },
   ],
-  [{ fieldName: "body", type: "textarea" }],
+  [{ fieldName: "description", type: "textarea" }],
 ];

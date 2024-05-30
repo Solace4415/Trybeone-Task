@@ -16,13 +16,13 @@ const InputField = ({ name, label, fullWidth, type }: IProps) => {
       }`}
     >
       <label
-        className="mb-2 block text-xs text-white font-bold uppercase tracking-wide"
+        className="mb-2 block text-xs font-bold uppercase tracking-wide text-white"
         htmlFor={name}
       >
         {label ?? name}
       </label>
       <Field
-        className="border-gray-500 bg-transparent text-white leading-tight mb-1 block w-full rounded border px-4 py-3 focus:outline-none"
+        className="mb-1 block w-full rounded border border-gray-500 bg-transparent px-4 py-3 leading-tight text-white focus:outline-none"
         type={type}
         name={name}
         min={type === "number" ? 0 : undefined}

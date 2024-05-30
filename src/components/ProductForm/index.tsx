@@ -6,8 +6,10 @@ import { toast } from "react-hot-toast";
 import { NextRouter, useRouter } from "next/router";
 import { useState } from "react";
 import { LoadingSpinner } from "../Spinner";
+import { FaEdit, FaPlus } from "react-icons/fa";
 
-function CreateProductForm({ data }: { data?: any }) {
+function CreateProductForm({ data }: { data: any }) {
+  const { body, ...otherDataValues } = data;
   const [isLoading, setIsLoading] = useState(false);
   const router: NextRouter = useRouter();
   const { edit } = router.query;
@@ -15,16 +17,19 @@ function CreateProductForm({ data }: { data?: any }) {
   // handle Submit
   const handleSubmit = async (values: typeof initialValues) => {
     setIsLoading(true);
+    const { description, ...otherValues } = values;
     try {
       edit
         ? await axios.put(
             `https://jsonplaceholder.typicode.com/posts/${data?.id}`,
             {
-              values,
+              ...otherValues,
+              body: description,
             }
           )
         : await axios.post(`https://jsonplaceholder.typicode.com/posts`, {
-            values,
+            ...otherValues,
+            body: description,
           });
 
       router.push("/");
@@ -36,14 +41,19 @@ function CreateProductForm({ data }: { data?: any }) {
     }
   };
 
+  const dataValues = {
+    ...otherDataValues,
+    description: body,
+  };
+
   return (
     <Formik
-      initialValues={{ ...initialValues, ...data }}
+      initialValues={{ ...initialValues, ...dataValues }}
       onSubmit={handleSubmit}
       enableReinitialize
     >
       {() => (
-        <Form className="mx-auto w-full max-w-lg py-12">
+        <Form className="mx-auto w-full max-w-lg py-6">
           {formGroups?.map((item, index) => (
             <div
               className="-mx-3 mb-6 flex flex-wrap gap-5 md:gap-0"
@@ -55,7 +65,7 @@ function CreateProductForm({ data }: { data?: any }) {
                   label={input?.fieldName}
                   key={i}
                   type={input?.type}
-                  fullWidth={input.fieldName === "body"}
+                  fullWidth={input.fieldName === "description"}
                 />
               ))}
             </div>
@@ -72,7 +82,15 @@ function CreateProductForm({ data }: { data?: any }) {
                     <LoadingSpinner size={20} />
                   </div>
                 )}
-                {edit ? "Update Product" : "Create Product"}
+                {edit ? (
+                  <p className="flex items-center gap-2">
+                    <FaEdit /> Update Product
+                  </p>
+                ) : (
+                  <p className="flex items-center gap-2">
+                    <FaPlus /> Create Product
+                  </p>
+                )}
               </button>
             </div>
           </div>

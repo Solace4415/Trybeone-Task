@@ -12,7 +12,7 @@ export const PageLayout = (props: PropsWithChildren) => {
       <div className="flex w-[80%] py-4">
         <div className="w-full">
           <Navbar />
-          {create ? <CreateProductForm /> : props.children}
+          {create ? <CreateProductForm data={[]} /> : props.children}
         </div>
       </div>
     </main>
