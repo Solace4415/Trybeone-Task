@@ -48,7 +48,7 @@ const ViewProduct: NextPage<{ id: string }> = ({ id }) => {
       />
       {!edit ? (
         <div className="flex items-center justify-center">
-          <div className="my-8 flex w-full max-w-3xl flex-col items-center justify-center gap-5 rounded-lg p-8 shadow-lg dark:bg-gray-800">
+          <div className="my-8 flex w-full max-w-3xl flex-col items-center justify-center gap-5 rounded-lg bg-gray-800 p-8 shadow-lg">
             <div className="w-full">
               <Image
                 className="h-[400px] w-full rounded-lg object-cover shadow-lg"
@@ -58,7 +58,7 @@ const ViewProduct: NextPage<{ id: string }> = ({ id }) => {
                 height={400}
               />
             </div>
-            <div className="flex flex-col text-center text-black dark:text-white">
+            <div className="flex flex-col text-center text-white">
               <h2 className="mb-2 text-2xl font-bold">{data?.title}</h2>
               <p className="mb-4 text-base italic opacity-80">{data?.body}</p>
               <div className="grid grid-cols-2 gap-5 text-left">
