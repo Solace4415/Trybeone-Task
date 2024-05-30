@@ -107,7 +107,7 @@ const ViewProduct: NextPage<{ id: string }> = ({ id }) => {
 
 export async function getStaticPaths() {
   const paths = [] as any;
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
